@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardTask"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="5dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="?attr/colorSurface">
+
+    <!-- Container chính: thanh màu trái + nội dung -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Thanh màu bên trái thể hiện mức độ khẩn cấp -->
+        <View
+            android:id="@+id/viewUrgencyBorder"
+            android:layout_width="6dp"
+            android:layout_height="match_parent"
+            android:background="#4CAF50" />
+
+        <!-- Khu vực nội dung chính của task -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingEnd="8dp">
+
+            <!-- Hàng trên: Tên task + Checkbox hoàn thành -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Tên task (in đậm) -->
+                <TextView
+                    android:id="@+id/tvTaskTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:text="Tên nhiệm vụ" />
+
+                <!-- Checkbox đánh dấu hoàn thành (bên phải) -->
+                <CheckBox
+                    android:id="@+id/checkboxDone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:buttonTint="?attr/colorPrimary"
+                    android:contentDescription="Đánh dấu hoàn thành" />
+
+            </LinearLayout>
+
+            <!-- Hàng dưới: Chip môn học + deadline + độ khó -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <!-- Chip tên môn học với màu nền = subject.color -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSubjectName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:text="Môn học"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    app:chipBackgroundColor="#9C27B0"
+                    app:chipMinTouchTargetSize="0dp"
+                    app:chipStartPadding="8dp"
+                    app:chipEndPadding="8dp"
+                    app:chipIconVisible="false"
+                    app:ensureMinTouchTargetSize="false"
+                    style="@style/Widget.Material3.Chip.Assist" />
+
+                <!-- Khoảng cách -->
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="wrap_content" />
+
+                <!-- Hiển thị thời hạn: "còn N ngày" / "HÔM NAY!" / "QUÁ HẠN N ngày" -->
+                <TextView
+                    android:id="@+id/tvDeadlineLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:text="còn 3 ngày" />
+
+                <!-- Icon mức độ khó: 🟢 Dễ / 🟡 Trung bình / 🔴 Khó -->
+                <TextView
+                    android:id="@+id/tvDifficultyIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginStart="4dp"
+                    android:text="🟢" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

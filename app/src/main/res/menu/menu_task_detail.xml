@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Menu cho màn hình chi tiết task: chứa icon Share -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Item Sửa task: mở lại màn hình Thêm task ở chế độ chỉnh sửa -->
+    <item
+        android:id="@+id/action_edit"
+        android:title="@string/menu_edit"
+        android:icon="@android:drawable/ic_menu_edit"
+        app:showAsAction="always" />
+
+    <!-- Item Chia sẻ task qua các ứng dụng khác -->
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/menu_share"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="always" />
+
+</menu>

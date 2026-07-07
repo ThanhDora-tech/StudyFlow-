@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout màn hình chính (Trang chủ) của ứng dụng StudyFlow.
+    Bao gồm:
+      - Header chào hỏi + hiển thị ngày hôm nay
+      - Section "Cần làm hôm nay" với RecyclerView
+      - Section "Sắp tới" với RecyclerView
+      - TextView empty state khi danh sách hôm nay trống
+      - FloatingActionButton để thêm task nhanh
+      - BottomNavigationView với 3 tab
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".MainActivity">
+
+    <!-- Nội dung cuộn chính -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ===== HEADER: Chào hỏi + ngày hôm nay ===== -->
+            <LinearLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="56dp"
+                android:paddingBottom="16dp"
+                android:background="?attr/colorPrimaryContainer">
+
+                <!-- Lời chào buổi sáng/chiều/tối động -->
+                <TextView
+                    android:id="@+id/tvGreeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chào buổi sáng! 🌟"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnPrimaryContainer" />
+
+                <!-- Ngày hôm nay -->
+                <TextView
+                    android:id="@+id/tvTodayDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="14sp"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:alpha="0.8"
+                    tools:text="Thứ Bảy, 21 tháng 6 năm 2026" />
+
+            </LinearLayout>
+
+            <!-- ===== FILTER CHIPS: Bộ lọc task ===== -->
+            <HorizontalScrollView
+                android:id="@+id/filterScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:paddingHorizontal="12dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="4dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Chip "Tất cả" — reset toàn bộ filter, mặc định checked -->
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipFilterAll"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Tất cả"
+                        android:checkable="true"
+                        android:checked="true" />
+
+                    <!-- Chip lọc theo môn học, bấm mở BottomSheet chọn môn -->
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipFilterSubject"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Môn học ▼"
+                        android:checkable="true" />
+
+                    <!-- Chip lọc theo độ khó, bấm mở BottomSheet chọn mức -->
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipFilterDifficulty"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Độ khó ▼"
+                        android:checkable="true" />
+
+                    <!-- Chip lọc task quá hạn, toggle bật/tắt -->
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipFilterOverdue"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Quá hạn"
+                        android:checkable="true" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <!-- ===== SECTION: Cần làm hôm nay ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="16dp">
+
+
+                <!-- Tiêu đề section "Hôm nay" -->
+                <TextView
+                    android:id="@+id/tvSectionToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔥 Cần làm hôm nay"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:layout_marginBottom="4dp" />
+
+                <!-- TextView empty state: hiện khi todayList trống -->
+                <TextView
+                    android:id="@+id/tvEmptyToday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tuyệt vời! Bạn đã hoàn thành mọi việc hôm nay 🎉"
+                    android:textSize="14sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:gravity="center"
+                    android:paddingVertical="24dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- RecyclerView danh sách task cần làm hôm nay + ngày mai -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTodayTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:paddingBottom="4dp"
+                tools:listitem="@layout/item_task" />
+
+            <!-- ===== SECTION: Sắp tới ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="16dp">
+
+                <!-- Tiêu đề section "Sắp tới" -->
+                <TextView
+                    android:id="@+id/tvSectionUpcoming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📅 Sắp tới"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:layout_marginBottom="4dp" />
+
+                <!-- TextView khi không có task sắp tới -->
+                <TextView
+                    android:id="@+id/tvEmptyUpcoming"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Không có task nào trong 7 ngày tới 📭"
+                    android:textSize="14sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:gravity="center"
+                    android:paddingVertical="16dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- RecyclerView danh sách task sắp tới (2–7 ngày) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvUpcomingTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:paddingBottom="8dp"
+                tools:listitem="@layout/item_task" />
+
+            <!-- Khoảng đệm cuối để FAB không che nội dung -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- FloatingActionButton thêm task nhanh -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        android:contentDescription="Thêm task mới"
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:fabSize="normal" />
+
+    <!-- BottomNavigationView với 3 tab: Hôm nay / Môn học / Cài đặt -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?attr/colorSurface"
+        app:menu="@menu/menu_bottom_nav"
+        app:labelVisibilityMode="labeled" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

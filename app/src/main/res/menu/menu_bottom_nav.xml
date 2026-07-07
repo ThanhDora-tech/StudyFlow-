@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Menu dùng cho BottomNavigationView ở màn hình chính.
+    3 tab: Hôm nay | Môn học | Cài đặt
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Tab Hôm nay (mặc định được chọn) -->
+    <item
+        android:id="@+id/nav_today"
+        android:icon="@android:drawable/ic_menu_today"
+        android:title="Hôm nay"
+        android:checked="true" />
+
+    <!-- Tab Môn học -->
+    <item
+        android:id="@+id/nav_subjects"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Môn học" />
+
+    <!-- Tab Cài đặt -->
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="Cài đặt" />
+
+</menu>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Nền bo tròn cho nhãn "Đã hoàn thành ✓" -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="14dp" />
+    <stroke
+        android:width="2dp"
+        android:color="?attr/colorPrimary" />
+    <!-- Nền trong suốt nhẹ -->
+    <solid android:color="@color/color_done_label_bg" />
+</shape>

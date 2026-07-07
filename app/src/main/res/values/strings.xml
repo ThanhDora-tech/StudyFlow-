@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">StudyFlow</string>
+    <string name="hint_subject_name">Tên môn học</string>
+    <string name="importance_level_default">Mức độ quan trọng: 3</string>
+    <string name="importance_level_format">Mức độ quan trọng: %1$d</string>
+    <string name="title_add_task">Thêm task mới</string>
+    <string name="title_edit_task">Sửa Task</string>
+    <string name="hint_task_name">Tên task</string>
+    <string name="hint_subject">Môn học</string>
+    <string name="btn_select_deadline_default">Chọn ngày...</string>
+    <string name="btn_take_picture">📷 Chụp ảnh</string>
+    <string name="btn_pick_image">🖼️ Chọn ảnh</string>
+    <string name="btn_save_task">Lưu task</string>
+    <string name="difficulty_easy">Dễ</string>
+    <string name="difficulty_medium">Trung bình</string>
+    <string name="difficulty_hard">Khó</string>
+    <string name="msg_empty_task_name">Tên task không được để trống</string>
+    <string name="msg_empty_subject">Vui lòng chọn môn học</string>
+    <string name="msg_empty_deadline">Vui lòng chọn deadline</string>
+    <string name="select_color">Chọn màu sắc</string>
+    <!-- Chuỗi giao diện màn hình chi tiết task -->
+    <string name="btn_mark_done">✅ Hoàn thành</string>
+    <string name="btn_mark_undone">↩️ Bỏ hoàn thành</string>
+    <string name="label_done">Đã hoàn thành ✓</string>
+    <string name="menu_share">Chia sẻ</string>
+    <string name="menu_edit">Sửa</string>
+    <string name="cd_task_image">Ảnh đính kèm</string>
+</resources>

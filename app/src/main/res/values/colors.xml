@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- Màu nền nhạt cho nhãn "Đã hoàn thành" (xanh lá nhạt/trong suốt) -->
+    <color name="color_done_label_bg">#1A4CAF50</color>
+</resources>
